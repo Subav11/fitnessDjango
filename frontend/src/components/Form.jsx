@@ -10,14 +10,15 @@ function Form({ route, method }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   const name = method === "login" ? "Login" : "Register";
 
   const handleSubmit = async (e) => {
-    setLoading(true);
     e.preventDefault();
+    setLoading(true);
+    setErrors({});
 
     try {
       const payload =
@@ -42,14 +43,21 @@ function Form({ route, method }) {
     } catch (err) {
       const data = err.response?.data;
 
-      if (data?.detail) {
-        setError(data.detail); // Case 1 (JWT / auth errors)
-      } else if (typeof data === "object" && data !== null) {
-        const firstKey = Object.keys(data)[0];
-        setError(data[firstKey]); // ✅ Case 2 handled here
-      } else {
-        setError("Something went wrong");
+      if (!data) {
+        setErrors({ detail: "Server error. Try again." });
+        return;
       }
+
+      if (data.detail) {
+        setErrors({ detail: data.detail });
+        return;
+      }
+
+      const fieldErrors = {};
+      for (const key in data) {
+        fieldErrors[key] = data[key][0];
+      }
+      setErrors(fieldErrors);
     } finally {
       setLoading(false);
     }
@@ -57,7 +65,7 @@ function Form({ route, method }) {
 
   return (
     <form onSubmit={handleSubmit} className="form-container">
-      {error}
+      {errors.detail && <p className="error-text">{errors.detail}</p>}
       <h1>{name}</h1>
       {method === "register" && (
         <>
@@ -84,6 +92,7 @@ function Form({ route, method }) {
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Email"
       />
+      {errors.email && <p className="error-text">{errors.email}</p>}
       <input
         type="password"
         className="form-input"
@@ -91,6 +100,7 @@ function Form({ route, method }) {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
       />
+      {errors.password && <p className="error-text">{errors.password}</p>}
       <button className="form-button" type="submit">
         {name}
       </button>
