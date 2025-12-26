@@ -215,7 +215,7 @@ function FitnessProfileCreate() {
 
                 {error && <p className="error">{error}</p>}
                 {loading && <LoadingIndicator/>}
-                <button type="submit" disabled={loading}>
+                <button type="submit" disabled={loading}>Create Profile
                 </button>
             </form>
         </div>

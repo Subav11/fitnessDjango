@@ -226,6 +226,7 @@ function FitnessProfileUpdate() {
                 {error && <p className="error">{error}</p>}
                 {loading && <LoadingIndicator/>}
                 <button type="submit" disabled={loading}>
+                    Update Profile
                 </button>
             </form>
         </div>
