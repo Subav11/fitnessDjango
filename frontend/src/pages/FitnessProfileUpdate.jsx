@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
 import "../styles/FitnessProfile.css";
+import LoadingIndicator from "../components/LoadingIndicator"
 
 function FitnessProfileUpdate() {
     const navigate = useNavigate();
@@ -223,9 +224,8 @@ function FitnessProfileUpdate() {
                 </div>
 
                 {error && <p className="error">{error}</p>}
-
+                {loading && <LoadingIndicator/>}
                 <button type="submit" disabled={loading}>
-                    {loading ? "Updating..." : "Update Profile"}
                 </button>
             </form>
         </div>

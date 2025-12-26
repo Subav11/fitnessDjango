@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
 import "../styles/FitnessProfile.css";
+import LoadingIndicator from "../components/LoadingIndicator"
 
 function FitnessProfileCreate() {
     const navigate = useNavigate();
@@ -213,9 +214,8 @@ function FitnessProfileCreate() {
 
 
                 {error && <p className="error">{error}</p>}
-
+                {loading && <LoadingIndicator/>}
                 <button type="submit" disabled={loading}>
-                    {loading ? "Saving..." : "Create Profile"}
                 </button>
             </form>
         </div>
