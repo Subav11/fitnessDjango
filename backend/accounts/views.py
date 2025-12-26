@@ -41,7 +41,7 @@ class FitnessProfileCreateView(generics.CreateAPIView):
         serializer.save(user=self.request.user)
 
 
-class FitnessProfileUpdateView(generics.UpdateAPIView):
+class FitnessProfileUpdateView(generics.RetrieveUpdateAPIView):
     serializer_class = FitnessProfileSerializer
     permission_classes = [IsAuthenticated]
 

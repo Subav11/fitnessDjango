@@ -1,39 +1,51 @@
-import React from "react"
-import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom"
-import Login from "./pages/Login"
-import Register from "./pages/Register"
-import Home from "./pages/Home"
-import NotFound from "./pages/NotFound"
-import ProtectedRoute from "./components/ProtectedRoute"
+import React from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import ProtectedRoute from "./components/ProtectedRoute";
+import FitnessProfileCreate from "./pages/FitnessProfileCreate";
+import FitnessProfileUpdate from "./pages/FitnessProfileUpdate";
+import Dashboard from "./pages/Dashboard";
 
-function Logout(){
-  localStorage.clear()
-  return <Navigate to="/login"/>
+function Logout() {
+  localStorage.clear();
+  return <Navigate to="/" />;
 }
 
-function RegisterAndLogout(){
-  localStorage.clear()
-  return <Register/>
+function RegisterAndLogout() {
+  localStorage.clear();
+  return <Register />;
 }
 
 function App() {
-
   return (
     <BrowserRouter>
-    <Routes>
-      <Route path="/" 
-      element={
-        <ProtectedRoute>
-          <Home/>
-        </ProtectedRoute>
-      }/>
-      <Route path="/login" element={<Login/>}/>
-      <Route path="/logout" element={<Logout/>}/>
-      <Route path="/register" element={<RegisterAndLogout/>}/>
-      <Route path="*" element={<NotFound/>}></Route>
-    </Routes>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path="/register" element={<RegisterAndLogout />} />
+        <Route path="/fitness-profile/create" element={
+          <ProtectedRoute>
+            <FitnessProfileCreate/>
+          </ProtectedRoute>
+        }/>
+        <Route path="/fitness-profile/update" element={
+          <ProtectedRoute>
+            <FitnessProfileUpdate/>
+          </ProtectedRoute>
+        }/>
+         <Route path="/dashboard" element={
+          <ProtectedRoute>
+            <Dashboard/>
+          </ProtectedRoute>
+        }/>
+        <Route path="*" element={<NotFound />}></Route>
+      </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
