@@ -8,6 +8,8 @@ function Dashboard() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const firstName = user?.first_name;
 
   useEffect(() => {
     checkProfile();
@@ -45,7 +47,8 @@ function Dashboard() {
   if (profileExists === false) {
     return (
       <div className="dashboard-empty">
-        <h2>Welcome 👋</h2>
+        <h2>Welcome {firstName}👋</h2>
+        <p>Your personalized fitness journey starts here.</p>
         <p>
           To see your calories, macros, and fitness insights, please create your
           fitness profile first.
@@ -67,7 +70,7 @@ function Dashboard() {
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
-        <h1>Your Fitness Dashboard</h1>
+        <h1>{firstName}'s Fitness Dashboard</h1>
         <div className="dashboard-actions">
           <Link to="/fitness-profile/update" className="secondary-btn">
             Update Profile
