@@ -124,9 +124,9 @@ function Dashboard() {
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-300"></div>
-            <div className="relative rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-600 text-white p-8 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
+            <div className="relative min-h-[214px] rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-600 text-white p-8 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300">
               <div className="flex items-center gap-3 mb-3">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <h3 className="text-xl font-bold">Target Calories</h3>
@@ -140,7 +140,7 @@ function Dashboard() {
 
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-r from-teal-400 to-emerald-400 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-300"></div>
-            <div className="relative rounded-2xl bg-white/90 backdrop-blur-xl p-8 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-white/40">
+            <div className="relative min-h-[214px] rounded-2xl bg-white/90 backdrop-blur-xl p-8 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-white/40">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center">
                   <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -158,7 +158,7 @@ function Dashboard() {
 
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 to-amber-400 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-300"></div>
-            <div className="relative rounded-2xl bg-white/90 backdrop-blur-xl p-8 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-white/40">
+            <div className="relative min-h-[214px] rounded-2xl bg-white/90 backdrop-blur-xl p-8 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-white/40">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center">
                   <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
