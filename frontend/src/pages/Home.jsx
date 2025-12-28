@@ -72,7 +72,7 @@ function Home() {
           {/* Card 1 */}
           <div className="group relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-300"></div>
-            <div className="relative rounded-2xl bg-white/90 backdrop-blur-xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-white/40">
+            <div className="relative min-h-[290px] rounded-2xl bg-white/90 backdrop-blur-xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-white/40">
               <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -91,7 +91,7 @@ function Home() {
           {/* Card 2 */}
           <div className="group relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-teal-500 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-300"></div>
-            <div className="relative rounded-2xl bg-white/90 backdrop-blur-xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-white/40">
+            <div className="relative min-h-[290px] rounded-2xl bg-white/90 backdrop-blur-xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-white/40">
               <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500 to-teal-500 flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -110,7 +110,7 @@ function Home() {
           {/* Card 3 */}
           <div className="group relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-300"></div>
-            <div className="relative rounded-2xl bg-white/90 backdrop-blur-xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-white/40">
+            <div className="relative min-h-[290px] rounded-2xl bg-white/90 backdrop-blur-xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-white/40">
               <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
