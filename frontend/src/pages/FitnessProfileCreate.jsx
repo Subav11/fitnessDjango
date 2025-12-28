@@ -1,225 +1,208 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
-import "../styles/FitnessProfile.css";
-import LoadingIndicator from "../components/LoadingIndicator"
 
 function FitnessProfileCreate() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const [formData, setFormData] = useState({
-        height_cm: "",
-        weight_kg: "",
-        age: "",
-        gender: "male",
-        goal: "maintain",
-        activity_level: "moderate",
-    });
+  const [formData, setFormData] = useState({
+    height_cm: "",
+    weight_kg: "",
+    age: "",
+    gender: "male",
+    goal: "maintain",
+    activity_level: "moderate",
+  });
 
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        setError(null);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
 
-        try {
-            await api.post("/fitness-profile/create/", {
-                height_cm: Number(formData.height_cm),
-                weight_kg: Number(formData.weight_kg),
-                age: Number(formData.age),
-                gender: formData.gender,
-                goal: formData.goal,
-                activity_level: formData.activity_level,
-            });
+    try {
+      await api.post("/fitness-profile/create/", {
+        height_cm: Number(formData.height_cm),
+        weight_kg: Number(formData.weight_kg),
+        age: Number(formData.age),
+        gender: formData.gender,
+        goal: formData.goal,
+        activity_level: formData.activity_level,
+      });
 
-            navigate("/dashboard");
-        } catch (err) {
-            setError("Failed to create profile. Please check your inputs.");
-        } finally {
-            setLoading(false);
-        }
-    };
+      navigate("/dashboard");
+    } catch (err) {
+      setError("Failed to create profile. Please check your inputs.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    return (
-        <div className="profile-container">
-            <h2>Create Fitness Profile</h2>
+  return (
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4 py-10">
+      <div className="w-full max-w-2xl bg-white rounded-xl shadow-md p-8">
+        <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">
+          Create Fitness Profile
+        </h2>
 
-            <form onSubmit={handleSubmit} className="profile-form">
-                <input
-                    type="number"
-                    name="height_cm"
-                    placeholder="Height (cm)"
-                    required
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="grid gap-4 md:grid-cols-3">
+            <input
+              type="number"
+              name="height_cm"
+              placeholder="Height (cm)"
+              required
+              onChange={handleChange}
+              className="rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
+            />
+
+            <input
+              type="number"
+              step="0.1"
+              name="weight_kg"
+              placeholder="Weight (kg)"
+              required
+              onChange={handleChange}
+              className="rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
+            />
+
+            <input
+              type="number"
+              name="age"
+              placeholder="Age"
+              required
+              onChange={handleChange}
+              className="rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
+            />
+          </div>
+
+          {/* Gender */}
+          <div>
+            <p className="font-semibold text-gray-800 mb-2">Gender</p>
+            <div className="flex gap-6">
+              {["male", "female"].map((g) => (
+                <label
+                  key={g}
+                  className="flex items-center gap-2 cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    name="gender"
+                    value={g}
+                    checked={formData.gender === g}
                     onChange={handleChange}
-                />
+                    className="accent-blue-600"
+                  />
+                  <span className="capitalize">{g}</span>
+                </label>
+              ))}
+            </div>
+          </div>
 
-                <input
-                    type="number"
-                    step="0.1"
-                    name="weight_kg"
-                    placeholder="Weight (kg)"
-                    required
+          {/* Goal */}
+          <div>
+            <p className="font-semibold text-gray-800 mb-2">Fitness Goal</p>
+            <div className="grid gap-3 md:grid-cols-2">
+              {[
+                { value: "cut", label: "Fat Loss" },
+                { value: "maintain", label: "Maintain" },
+                { value: "lean_bulk", label: "Lean Bulk" },
+                { value: "bulk", label: "Muscle Gain" },
+              ].map((g) => (
+                <label
+                  key={g.value}
+                  className="flex items-center gap-2 cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    name="goal"
+                    value={g.value}
+                    checked={formData.goal === g.value}
                     onChange={handleChange}
-                />
+                    className="accent-blue-600"
+                  />
+                  {g.label}
+                </label>
+              ))}
+            </div>
+          </div>
 
-                <input
-                    type="number"
-                    name="age"
-                    placeholder="Age"
-                    required
+          {/* Activity Level */}
+          <div>
+            <p className="font-semibold text-gray-800 mb-2">
+              Activity Level
+            </p>
+
+            <div className="space-y-3">
+              {[
+                {
+                  value: "sedentary",
+                  title: "Sedentary",
+                  desc: "Little or no exercise, mostly sitting",
+                },
+                {
+                  value: "light",
+                  title: "Lightly Active",
+                  desc: "Light exercise 1–3 days/week",
+                },
+                {
+                  value: "moderate",
+                  title: "Moderately Active",
+                  desc: "Gym or sports 3–5 days/week",
+                },
+                {
+                  value: "active",
+                  title: "Very Active",
+                  desc: "Intense training or physical job",
+                },
+              ].map((a) => (
+                <label
+                  key={a.value}
+                  className="flex gap-3 items-start cursor-pointer"
+                >
+                  <input
+                    type="radio"
+                    name="activity_level"
+                    value={a.value}
+                    checked={formData.activity_level === a.value}
                     onChange={handleChange}
-                />
+                    className="mt-1 accent-blue-600"
+                  />
+                  <span>
+                    <strong>{a.title}</strong> – {a.desc}
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
 
-                {/* Gender Radio */}
-                <div className="radio-group">
-                    <label>Gender</label>
-                    <div className="radio-options">
-                        <label>
-                            <input
-                                type="radio"
-                                name="gender"
-                                value="male"
-                                checked={formData.gender === "male"}
-                                onChange={handleChange}
-                            />
-                            Male
-                        </label>
+          {error && (
+            <p className="text-red-600 text-sm text-center">{error}</p>
+          )}
 
-                        <label>
-                            <input
-                                type="radio"
-                                name="gender"
-                                value="female"
-                                checked={formData.gender === "female"}
-                                onChange={handleChange}
-                            />
-                            Female
-                        </label>
-                    </div>
-                </div>
+          {loading && (
+          <div className="mt-6 flex justify-center">
+            <div className="h-10 w-10 rounded-full border-4 border-blue-200 border-t-blue-600 animate-spin" />
+          </div>
+        )}
 
-                {/* Goal Radio */}
-                <div className="radio-group">
-                    <label>Fitness Goal</label>
-                    <div className="radio-options">
-                        <label>
-                            <input
-                                type="radio"
-                                name="goal"
-                                value="cut"
-                                checked={formData.goal === "cut"}
-                                onChange={handleChange}
-                            />
-                            Fat Loss
-                        </label>
-
-                        <label>
-                            <input
-                                type="radio"
-                                name="goal"
-                                value="maintain"
-                                checked={formData.goal === "maintain"}
-                                onChange={handleChange}
-                            />
-                            Maintain
-                        </label>
-
-                        <label>
-                            <input
-                                type="radio"
-                                name="goal"
-                                value="lean_bulk"
-                                checked={formData.goal === "lean_bulk"}
-                                onChange={handleChange}
-                            />
-                            Lean Bulk
-                        </label>
-
-                        <label>
-                            <input
-                                type="radio"
-                                name="goal"
-                                value="bulk"
-                                checked={formData.goal === "bulk"}
-                                onChange={handleChange}
-                            />
-                            Muscle Gain
-                        </label>
-                    </div>
-                </div>
-
-               {/* Activity Level Radio */}
-<div className="radio-group">
-    <label>Activity Level</label>
-    <div className="radio-options vertical">
-        <label>
-            <input
-                type="radio"
-                name="activity_level"
-                value="sedentary"
-                checked={formData.activity_level === "sedentary"}
-                onChange={handleChange}
-            />
-            <span>
-                <strong>Sedentary</strong> – Little or no exercise, mostly sitting
-            </span>
-        </label>
-
-        <label>
-            <input
-                type="radio"
-                name="activity_level"
-                value="light"
-                checked={formData.activity_level === "light"}
-                onChange={handleChange}
-            />
-            <span>
-                <strong>Lightly Active</strong> – Light exercise 1–3 days/week
-            </span>
-        </label>
-
-        <label>
-            <input
-                type="radio"
-                name="activity_level"
-                value="moderate"
-                checked={formData.activity_level === "moderate"}
-                onChange={handleChange}
-            />
-            <span>
-                <strong>Moderately Active</strong> – Gym or sports 3–5 days/week
-            </span>
-        </label>
-
-        <label>
-            <input
-                type="radio"
-                name="activity_level"
-                value="active"
-                checked={formData.activity_level === "active"}
-                onChange={handleChange}
-            />
-            <span>
-                <strong>Very Active</strong> – Intense training or physical job
-            </span>
-        </label>
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full rounded-lg bg-blue-600 py-3 text-white font-semibold hover:bg-blue-700 transition disabled:opacity-60"
+          >
+            Create
+          </button>
+        </form>
+      </div>
     </div>
-</div>
-
-
-                {error && <p className="error">{error}</p>}
-                {loading && <LoadingIndicator/>}
-                <button type="submit" disabled={loading}>Create
-                </button>
-            </form>
-        </div>
-    );
+  );
 }
 
 export default FitnessProfileCreate;

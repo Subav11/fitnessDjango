@@ -2,8 +2,6 @@ import { useState } from "react";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
-import "../styles/Form.css";
-import LoadingIndicator from "../components/LoadingIndicator"
 
 function Form({ route, method }) {
   const [email, setEmail] = useState("");
@@ -66,48 +64,82 @@ function Form({ route, method }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form-container">
-      {errors.detail && <p className="error-text">{errors.detail}</p>}
-      <h1>{name}</h1>
-      {method === "register" && (
-        <>
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-md bg-white p-8 rounded-xl shadow-md"
+      >
+        <h1 className="text-2xl font-bold text-center text-gray-900 mb-6">
+          {name}
+        </h1>
+
+        {errors.detail && (
+          <p className="mb-4 text-sm text-red-600 text-center">
+            {errors.detail}
+          </p>
+        )}
+
+        {method === "register" && (
+          <div className="space-y-4">
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              placeholder="First Name"
+              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
+            />
+
+            <input
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              placeholder="Last Name"
+              className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
+            />
+          </div>
+        )}
+
+        <div className="mt-4">
           <input
-            type="text"
-            className="form-input"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            placeholder="First Name"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
           />
+          {errors.email && (
+            <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+          )}
+        </div>
+
+        <div className="mt-4">
           <input
-            type="text"
-            className="form-input"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            placeholder="Last Name"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
           />
-        </>
-      )}
-      <input
-        type="email"
-        className="form-input"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-      />
-      {errors.email && <p className="error-text">{errors.email}</p>}
-      <input
-        type="password"
-        className="form-input"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-      />
-      {errors.password && <p className="error-text">{errors.password}</p>}
-      {loading && <LoadingIndicator/>}
-      <button className="form-button" type="submit">
-        {name}
-      </button>
-    </form>
+          {errors.password && (
+            <p className="mt-1 text-sm text-red-600">{errors.password}</p>
+          )}
+        </div>
+
+        {loading && (
+          <div className="mt-6 flex justify-center">
+            <div className="h-10 w-10 rounded-full border-4 border-blue-200 border-t-blue-600 animate-spin" />
+          </div>
+        )}
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="mt-4 w-full rounded-lg bg-blue-600 py-2 text-white font-semibold hover:bg-blue-700 transition disabled:opacity-60"
+        >
+          {name}
+        </button>
+      </form>
+    </div>
   );
 }
 
