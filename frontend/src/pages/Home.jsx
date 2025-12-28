@@ -27,7 +27,7 @@ function Home() {
 
                 <div className="card-grid">
                     <div className="card">
-                        <h3>🔥 Smart Calories</h3>
+                        <h3>Smart Calories</h3>
                         <p>
                             Automatic BMR & TDEE calculation based on your
                             height, weight, and activity level.
@@ -35,7 +35,7 @@ function Home() {
                     </div>
 
                     <div className="card">
-                        <h3>🥗 Macro Tracking</h3>
+                        <h3>Macro Tracking</h3>
                         <p>
                             Protein, carbs, and fats calculated precisely
                             according to your fitness goal.
@@ -43,7 +43,7 @@ function Home() {
                     </div>
 
                     <div className="card">
-                        <h3>🤖 AI Diet Plans</h3>
+                        <h3>AI Diet Plans</h3>
                         <p>
                             Personalized meal plans generated using AI
                             (coming soon).
