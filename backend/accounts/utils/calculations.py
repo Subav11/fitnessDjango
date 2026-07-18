@@ -18,17 +18,17 @@ def calculate_tdee(bmr, activity_level):
 
 def calculate_target_calories(tdee, goal):
     if goal == "cut":
-        return tdee - 650
+        return tdee - 600
     elif goal == "lean_bulk":
-        return tdee + 350
+        return tdee + 300
     elif goal == "bulk":
-        return tdee + 800
+        return tdee + 600
     return tdee
 
 
 def calculate_macros(calories, weight_kg, goal):
     if goal == "cut":
-        protein_per_kg = 2.3
+        protein_per_kg = 2.2
     elif goal == "lean_bulk":
         protein_per_kg = 2
     elif goal == "maintain":
